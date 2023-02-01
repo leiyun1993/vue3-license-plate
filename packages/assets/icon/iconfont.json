@@ -1,0 +1,23 @@
+{
+  "id": "3873567",
+  "name": "license-plate",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1727472",
+      "name": "233键盘-线性",
+      "font_class": "jianpan-xianxing",
+      "unicode": "e8ce",
+      "unicode_decimal": 59598
+    },
+    {
+      "icon_id": "9512492",
+      "name": "退格",
+      "font_class": "backspace",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    }
+  ]
+}
