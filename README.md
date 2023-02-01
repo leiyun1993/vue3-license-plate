@@ -34,7 +34,7 @@ change(val){
 }
 ```
 * 展示如下
-![](https://github.com/leiyun1993/vue3-license-plate/raw/master/screenshot/s1.png)
+![](https://github.com/leiyun1993/vue3-license-plate/raw/main/screenshot/s1.png)
 
 ## API
 
