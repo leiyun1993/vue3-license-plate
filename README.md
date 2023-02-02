@@ -60,6 +60,10 @@ fontSize|Number|16| 文字大小
 
 ## Change Log
 
+* 1.0.1
+
+自动展示键盘
+
 * 1.0.0
 
 首次发版

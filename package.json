@@ -1,6 +1,6 @@
 {
   "name": "vue3-license-plate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "description": "一款基于vue3的车牌号输入控件，支持自定义输入框",
   "main": "lib/licensePlate.umd.min.js",
@@ -25,7 +25,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
-    "vue3-license-plate": "^1.0.0"
+    "vue3-license-plate": "^1.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
