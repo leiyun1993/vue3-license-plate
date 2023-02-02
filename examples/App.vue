@@ -3,13 +3,14 @@
     <div style="height:100px; width: 100%;"></div>
     <LicensePlate :borderRadius="6"
                   @change="changeVal"
-                  v-model="licensePlate"></LicensePlate>
+                  v-model="licensePlate"
+                  :autoShow="true"></LicensePlate>
     <div style="height:100px; width: 100%;"></div>
-    <LicensePlate :borderRadius="4"
+    <!-- <LicensePlate :borderRadius="4"
                   @change="changeVal"
                   v-model="licensePlate"
                   borderColor="red"
-                  borderActiveColor="green"></LicensePlate>
+                  borderActiveColor="green"></LicensePlate> -->
   </div>
 </template>
 
