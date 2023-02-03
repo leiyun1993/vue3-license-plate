@@ -2,7 +2,7 @@
   "name": "vue3-license-plate",
   "version": "1.0.1",
   "private": false,
-  "description": "一款基于vue3的车牌号输入控件，支持自定义输入框",
+  "description": "一款基于vue3的车牌号输入控件",
   "main": "lib/licensePlate.umd.min.js",
   "license": "MIT",
   "keywords": [
