@@ -2,19 +2,22 @@
 <template>
   <div class="license-plate_container">
     <!-- 输入框 -->
-    <div class="">
-      <div class="input_container">
-        <div class="input_box"
-             v-for="(item,index) in licensePlateLength"
-             :key="`${item}_${inputValue[index]}`"
-             :class="activeIndex == index?'active':''"
-             :style="{borderWidth:`${borderWidth}px`,borderRadius:`${borderRadius}px`,borderColor:`${activeIndex == index?borderActiveColor:borderColor}`}"
-             @click="inputClick(index)">
-          <div class="button"
-               :style="{borderRadius:`${borderRadius}px`,fontSize: `${fontSize}px`, color: fontColor}"
-               v-if="inputValue[index]">{{ inputValue[index] }}</div>
+    <div class=""
+         @click="onSlotClick">
+      <slot>
+        <div class="input_container">
+          <div class="input_box"
+               v-for="(item,index) in licensePlateLength"
+               :key="`${item}_${inputValue[index]}`"
+               :class="activeIndex == index?'active':''"
+               :style="{borderWidth:`${borderWidth}px`,borderRadius:`${borderRadius}px`,borderColor:`${activeIndex == index?borderActiveColor:borderColor}`}"
+               @click="inputClick(index)">
+            <div class="button"
+                 :style="{borderRadius:`${borderRadius}px`,fontSize: `${fontSize}px`, color: fontColor}"
+                 v-if="inputValue[index]">{{ inputValue[index] }}</div>
+          </div>
         </div>
-      </div>
+      </slot>
     </div>
     <!-- 键盘 -->
     <transition name="keyboard">
@@ -39,11 +42,11 @@
           <div class="number_list"
                v-if="activeIndex!=0">
             <div class="numer_wapper"
-                 v-for="item of numberList"
+                 v-for="(item,index) of numberList"
                  :key="item"
                  @click="btnClick(item,activeIndex==1)">
               <div class="button"
-                   :class="activeIndex==1?'disabled':''">
+                   :class="activeIndex==1 && index<10?'disabled':''">
                 {{ item }}
               </div>
             </div>
@@ -59,7 +62,7 @@
                 {{ item }}
               </div>
             </div>
-            <div class="numer_wapper"
+            <div class="numer_wapper delete"
                  @click="delClick">
               <div class="button img">
                 <i class="iconfont icon-backspace"></i>
@@ -82,7 +85,7 @@ export default {
       default: ''
     },
     //是否自动显示
-    autoShow:{
+    autoShow: {
       type: Boolean,
       default: false
     },
@@ -122,8 +125,8 @@ export default {
     return {
       licensePlateLength: 8,
       provinceList: ["京", "津", "渝", "沪", "冀", "晋", "辽", "吉", "黑", "苏", "浙", "皖", "闽", "赣", "鲁", "豫", "鄂", "湘", "粤", "琼", "川", "贵", "云", "陕", "甘", "青", "蒙", "桂", "宁", "新", "藏", "临"],
-      numberList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      letterList: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'O', 'P', '澳', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '港', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '学', '领'],
+      numberList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '警'],
+      letterList: ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'O', 'P', '港', '澳', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '挂', '学', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '领'],
       activeIndex: -1,
       inputValue: ["", "", "", "", "", "", "", ""],
       visible: false,
@@ -139,8 +142,8 @@ export default {
   async created () { },
   async mounted () {
     this.initLicensePlate();
-    if(this.autoShow){
-      this.activeIndex=0;
+    if (this.autoShow) {
+      this.activeIndex = 0;
       this.visible = true;
     }
   },
@@ -148,6 +151,13 @@ export default {
     initLicensePlate () {
       if (this.modelValue && LICENSE_PLATE_RULE.test(this.modelValue)) {
         this.inputValue = this.modelValue.split("");
+      }
+    },
+    onSlotClick () {
+      let length = this.inputValue.filter(it => it).length;
+      this.activeIndex = length == 0 ? 0 : length - 1;
+      if (!this.visible) {
+        this.visible = true;
       }
     },
     inputClick (index) {
@@ -173,7 +183,7 @@ export default {
         // this.$set(this.inputValue, this.activeIndex, ``);
         this.inputValue[this.activeIndex] = ``;
       } else {
-        this.inputValue[this.activeIndex-1] = ``;
+        this.inputValue[this.activeIndex - 1] = ``;
         // this.$set(this.inputValue, this.activeIndex - 1, ``);
         this.activeIndex--;
       }
@@ -269,9 +279,12 @@ export default {
         flex-wrap: wrap;
         .numer_wapper {
           flex: 1;
-          flex-basis: 10%;
+          flex-basis: 9.08%;
           padding: 0 6px 6px 0;
           box-sizing: border-box;
+          &.delete {
+            flex-basis: 27%;
+          }
         }
       }
     }

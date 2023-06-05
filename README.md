@@ -35,6 +35,17 @@ change(val){
 	console.log(val.pass)	  //是否验证通过
 }
 ```
+* 自定义车牌展示
+```
+<LicensePlate :borderRadius="6"
+							@change="changeVal"
+							v-model="licensePlate"
+							:autoShow="false">
+						<div class="custom">{{ licensePlate }}</div>
+</LicensePlate>
+//自定义时 borderColor borderActiveColor borderWidth borderRadius  fontColor fontSize 无效
+//自定义时点击事件根据当前长度计算，即默认选中最后一位
+```
 * 展示如下
 ![](https://github.com/leiyun1993/vue3-license-plate/raw/main/screenshot/s1.png)
 
@@ -59,6 +70,11 @@ fontSize|Number|16| 文字大小
 
 
 ## Change Log
+
+* 1.0.2
+
+1、增加  '警'、'挂'
+2、支持车牌slot
 
 * 1.0.1
 
